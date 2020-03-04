@@ -1,0 +1,48 @@
+mvn -v
+______
+	Apache Maven 3.3.9
+	Maven home: /usr/share/maven
+	Java version: 1.8.0_201, vendor: Oracle Corporation
+	Java home: /home/tasnim/myWork/software/jdk1.8.0_201/jre
+	Default locale: de_DE, platform encoding: UTF-8
+	OS name: "linux", version: "4.10.0-38-generic", arch: "amd64", family: "unix"
+
+clean install tomcat7:redeploy
+________________________________
+     add in $HOME/$USER /.m2/settings.xml 
+       <server>
+    <id>tomcatserver</id>
+    <username>tomcat</username>
+    <password>tomcat</password>
+	</server>
+
+	add in $TOMCAT/conf/tomcat-users.xml
+	<role rolename="manager-gui"/>
+	<role rolename="manager-script"/>
+	<role rolename="manager-jmx"/>
+  	<user username="tomcat" password="tomcat" roles="manager-gui,manager-script,manager-	jmx"/>
+
+	in POM.xml
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<url>http://localhost:8080/manager/text</url>
+					<server>tomcatserver</server>
+					<path>/articleDiscover</path>					
+					<username>tomcat</username>
+					<password>tomcat</password>
+				</configuration>
+			</plugin>
+
+remove folder from github
+______________________________
+https://www.youtube.com/watch?v=WseoCAyH6Mk
+
+starting ActiveMQ on linux:
+____________________________
+tasnim@tasnim-HP-EliteBook-8470p ~/myWork/software/apache-activemq-5.15.10/bin/linux-x86-64 $ sudo ./activemq start
+
+stored Procedures:
+https://docs.oracle.com/cd/B28359_01/appdev.111/b28843/tdddg_procedures.htm

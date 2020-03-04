@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="utf-8"/>
+ <title>JavaScript - Changing images back and forth</title>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+
+    $(document).ready(function(){
+    $('#div1').text(language.date);
+    });
+
+    </script>
+ 
+ <script type="text/javascript">
+ 
+ var image_tracker = 'orange';
+ 
+ function change(){
+ var image = document.getElementById('circle');
+ if(image_tracker=='orange'){
+ image.src='../images/logo__.jpg';
+ image_tracker='blue';
+ }
+ else{
+ image.src='../images/pare brise.jpg';
+ image_tracker='orange';
+ 
+ var language; 
+ function getLanguage() {
+ (localStorage.getItem('language') == null) ? setLanguage('en') : false;
+ $.ajax({ 
+ url:  '/language/' +  localStorage.getItem('language') + '.json', 
+ dataType: 'json', async: false, dataType: 'json', 
+ success: function (lang) { language = lang } });
+ }
+
+ function setLanguage(lang) {
+ localStorage.setItem('language', lang);
+ }
+ }
+ }
+ 
+ </script>
+ 
+</head>
+<body>
+ 
+<img src="../images/pare brise.jpg" alt="Circle" id="circle" onclick="change();">
+<a href="sample.html" onclick="setLanguage('en')">English</a> 
+<a href="sample.html" onclick="setLanguage('es')">Spanish</a>
+ <div id="div1"></div>
+ 
+</body>
+</html>
