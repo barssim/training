@@ -1,10 +1,11 @@
 package json;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 class JavaToJson {
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws JSONException {
     JSONObject obj = new JSONObject();
 
     obj.put("name", "foo");
