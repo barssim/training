@@ -19,11 +19,12 @@ public class JsonToJava {
 		CarFleet value = null;
 		try {
 			value = mapper.readValue(new File("result.json"), CarFleet.class);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		System.out.println(value);
+		System.out.println(value.getCars().get(0).getModel());
 
 	}
 
