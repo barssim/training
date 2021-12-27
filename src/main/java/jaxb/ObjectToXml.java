@@ -1,49 +1,45 @@
 package jaxb;
 
-import java.io.ByteArrayInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.StringReader;
-
+import java.io.StringWriter;
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import org.springframework.ws.soap.SoapHeader;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
 
 
 public class ObjectToXml {
-	public static void
-			main(String[] args) throws Exception {
-		String xmlRecords = "<data><employee><name>A</name>"
-		        + "<title>Manager</title></employee></data>";
+  public static void main(String[] args) {
+    // Java object. We will convert it to XML.
+    Employee employee = new Employee(1, "Lokesh", 6200);
 
-		    DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-		    InputSource is = new InputSource();
-		    is.setCharacterStream(new StringReader(xmlRecords));
+    // Method which uses JAXB to convert object to XML
+    jaxbObjectToXML(employee);
+  }
 
-		    Document doc = db.parse(is);
-		    NodeList nodes = doc.getElementsByTagName("employee");
+  private static void jaxbObjectToXML(Employee employee) {
+    try {
+      // Create JAXB Context
+      JAXBContext jaxbContext = JAXBContext.newInstance(Employee.class);
 
-		    for (int i = 0; i < nodes.getLength(); i++) {
-		      Element element = (Element) nodes.item(i);
+      // Create Marshaller
+      Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
-		      NodeList name = element.getElementsByTagName("name");
-		      Element line = (Element) name.item(0);
-		      System.out.println("Name: " + line);
+      // Required formatting??
+      jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 
-		      NodeList title = element.getElementsByTagName("title");
-		      line = (Element) title.item(0);
-		      System.out.println("Title: " + line);
-		    }
+      // Print XML String to Console
+      StringWriter sw = new StringWriter();
 
-		  }
+      // Write XML to StringWriter
+      jaxbMarshaller.marshal(employee, sw);
 
-		 
-	}
+      // Verify XML Content
+      String xmlContent = sw.toString();
+      System.out.println(xmlContent);
+
+    } catch (JAXBException e) {
+      e.printStackTrace();
+    }
+  }
+}
+
+
