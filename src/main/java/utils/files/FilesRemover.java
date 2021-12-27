@@ -1,4 +1,4 @@
-package de.solide.training.files;
+package utils.files;
 
 import java.io.File;
 import java.util.Arrays;

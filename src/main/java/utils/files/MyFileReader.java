@@ -1,4 +1,4 @@
-package de.solide.training.files;
+package utils.files;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

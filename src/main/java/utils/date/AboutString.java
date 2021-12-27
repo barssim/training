@@ -1,4 +1,4 @@
-package de.solide.training.date;
+package utils.date;
 
 public class AboutString {
 

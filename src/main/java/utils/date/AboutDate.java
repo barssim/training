@@ -1,4 +1,4 @@
-package de.solide.training.date;
+package utils.date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
