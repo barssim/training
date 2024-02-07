@@ -19,6 +19,6 @@ package javaFunction;
 	        half = half.compose(a -> 3 * a);
 	 
 	        // Applying the function to get the result
-	        System.out.println(half.apply(5));
+	        System.out.println(half.apply(10));
 	    }
 	}
