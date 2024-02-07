@@ -1,4 +1,4 @@
-package lambda;
+package java8_features;
 
 interface FunctionInterfaceNoArgument {
 	public String greeting();

@@ -1,4 +1,4 @@
-package lambda;
+package java8_features;
 
 import java.util.Optional;
 
